@@ -1,0 +1,51 @@
+services:
+  # Serviço PostgreSQL
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: myappdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+      
+  # Serviço Node.js
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-typeorm
+    environment:
+      - PORT=3000  # Defina a porta desejada aqui ou use a variável do .env
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_NAME=myappdb
+    ports:
+      - "3000:3000"  # Corrigido para a sintaxe correta
+    depends_on:
+      - db # O app depende do banco
+    volumes:
+      - ./src:/app/src
+  
+  # PgAdmin
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: nest-pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@root.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin4
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+# Volumes para persistência de dados do PostgreSQL
+volumes:
+  postgres_data:
