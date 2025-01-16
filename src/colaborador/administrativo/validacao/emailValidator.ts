@@ -1,18 +1,17 @@
-import {
-  ValidatorConstraintInterface,
-  //ValidationArguments,
-  ValidatorConstraint,
-  ValidationOptions,
-  registerDecorator,
-} from 'class-validator';
-import { UsuarioRepository } from '../usuario.repository';
 import { Injectable } from '@nestjs/common';
+import {
+  registerDecorator,
+  ValidationOptions,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+} from 'class-validator';
+import { ColaboradorAdministrativoRepository } from '../colaboradorAdministrativo.repository';
 
 //implemetando validações no class-validator
 @Injectable()
 @ValidatorConstraint({ async: true }) //Função assincrona
 export class ValidadorDeEmail implements ValidatorConstraintInterface {
-  constructor(private repository: UsuarioRepository) {}
+  constructor(private repository: ColaboradorAdministrativoRepository) {}
 
   async validate(email: string): Promise<boolean> {
     try {

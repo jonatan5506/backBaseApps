@@ -1,14 +1,12 @@
 import { Module } from '@nestjs/common';
-import { UsuarioModule } from './usuario/usuario.module';
-import { ProdutosModule } from './produto/produto.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ColaboradorAdministrativoModule } from './colaborador/administrativo/colaboradorAdministrativo.module';
 //import { PostgresConfigService } from './config/db.config.service';
 //import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    UsuarioModule,
-    ProdutosModule,
+    ColaboradorAdministrativoModule,
     // ConfigModule.forRoot({
     //   isGlobal: true,
     // }), //Configurar o uso do .env
