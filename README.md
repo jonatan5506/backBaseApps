@@ -13,6 +13,7 @@ Inicia projeto Nest - npx @nestjs/cli new loja
 6º TypeOrm - yarn add @nestjs/typeorm typeorm pg
  yarn add class-validator
  yarn add class-transformer
+ yarn add cpf-cnpj-validator
 7º Pasta Config para o DB
 
 * Conectando TypeOrm no Db
