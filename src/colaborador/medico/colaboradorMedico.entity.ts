@@ -21,7 +21,7 @@ export class ColaboradorMedicoEntity {
   celular: string;
   @Column({ name: 'email', length: 50, nullable: false })
   email: string;
-  @Column({ name: 'data_nascimento', length: 20, nullable: false })
+  @Column({ name: 'data_nascimento', nullable: false })
   dataDeNascimento: Date;
   @Column({ name: 'imagem', length: 150 })
   imagem: string;
