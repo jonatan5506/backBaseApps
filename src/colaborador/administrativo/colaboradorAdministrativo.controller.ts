@@ -37,7 +37,7 @@ export class ColaboradorAdministrativoController {
       colaboradorEntity.nome = dadosDoColaborador.nome;
       colaboradorEntity.id = uuid();
 
-      this.colaborador.criaColaborador(colaboradorEntity);
+      this.colaboradorService.criaColaborador(colaboradorEntity);
       return {
         colaborador: new ListaColaboradorAdministrativoDTO(
           colaboradorEntity.id,

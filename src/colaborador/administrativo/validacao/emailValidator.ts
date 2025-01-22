@@ -5,13 +5,15 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import { ColaboradorAdministrativoRepository } from '../colaboradorAdministrativo.repository';
+//import { ColaboradorAdministrativoRepository } from '../colaboradorAdministrativo.repository';
+import { ColaboradorAdministrativoService } from '../colaboradorAdministrativoService';
 
 //implemetando validações no class-validator
 @Injectable()
 @ValidatorConstraint({ async: true }) //Função assincrona
 export class ValidadorDeEmail implements ValidatorConstraintInterface {
-  constructor(private repository: ColaboradorAdministrativoRepository) {}
+  //constructor(private repository: ColaboradorAdministrativoRepository) {}
+  constructor(private repository: ColaboradorAdministrativoService) {}
 
   async validate(email: string): Promise<boolean> {
     try {

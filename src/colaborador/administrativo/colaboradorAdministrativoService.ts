@@ -8,15 +8,24 @@ import { ListaColaboradorAdministrativoDTO } from './dto/listaColaboradorAdminis
 export class ColaboradorAdministrativoService {
   constructor(
     @InjectRepository(ColaboradorAdministrativoEntity)
-    private readonly usuarioReposory: Repository<ColaboradorAdministrativoEntity>,
+    private readonly colaboradorReposory: Repository<ColaboradorAdministrativoEntity>,
   ) {}
 
-  async criaColaborador() {}
+  async criaColaborador(colaboradorEntity: ColaboradorAdministrativoEntity) {
+    await this.colaboradorReposory.save(colaboradorEntity);
+  }
+
+  async verificaEmail(email: string): Promise<boolean> {
+    const emailValidado = await this.colaboradorReposory.findOne({
+      where: { email },
+    });
+    return emailValidado !== null;
+  }
 
   async listaColaboradores() {
     try {
-      const usuariosSalvos = await this.usuarioReposory.find();
-      const listaColaboradores = usuariosSalvos.map(
+      const colaboradoresSalvos = await this.colaboradorReposory.find();
+      const listaColaboradores = colaboradoresSalvos.map(
         (usuario) =>
           new ListaColaboradorAdministrativoDTO(usuario.id, usuario.nome),
       );
