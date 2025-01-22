@@ -12,12 +12,16 @@ import { CriaColaboradorAdministrativoDTO } from './dto/criaColaboradorAdministr
 import { ColaboradorAdministrativoEntity } from './colaboradorAdministrativo.entity';
 import { ListaColaboradorAdministrativoDTO } from './dto/listaColaboradorAdministrativo.dto';
 import { AtualizaColaboradorAdministrativoDTO } from './dto/atualizaColaboradorAdministrativo.dto';
+import { ColaboradorAdministrativoService } from './colaboradorAdministrativoService';
 
 import { v4 as uuid } from 'uuid';
 
 @Controller('/colaborador/administrativo')
 export class ColaboradorAdministrativoController {
-  constructor(private colaborador: ColaboradorAdministrativoRepository) {}
+  constructor(
+    private colaborador: ColaboradorAdministrativoRepository,
+    private colaboradorService: ColaboradorAdministrativoService,
+  ) {}
 
   @Post()
   async criaColaborador(
@@ -48,12 +52,7 @@ export class ColaboradorAdministrativoController {
 
   @Get()
   async listaColaboradores() {
-    const colaboradores = await this.colaborador.listaColaboradores();
-    const colaboradoresLista = colaboradores.map(
-      (colaborador) =>
-        new ListaColaboradorAdministrativoDTO(colaborador.id, colaborador.nome),
-    );
-    return colaboradoresLista;
+    return await this.colaboradorService.listaColaboradores();
   }
 
   @Put('/:id')
