@@ -17,7 +17,7 @@ export class ValidadorDeEmail implements ValidatorConstraintInterface {
 
   async validate(email: string): Promise<boolean> {
     try {
-      const emailValidado = await this.repository.verificaEmail(email);
+      const emailValidado = await this.repository.verificaCpf(email);
       return !emailValidado;
     } catch (error) {
       throw new Error(`Erro ao validar email: ${error}`);

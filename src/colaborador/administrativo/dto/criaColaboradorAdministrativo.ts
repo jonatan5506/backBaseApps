@@ -9,6 +9,7 @@ import {
 import { EmailValidator } from '../validacao/emailValidator';
 import { CpfValidator } from '../validacao/cpfValidator';
 import { Type } from 'class-transformer';
+import { CpfExistValidator } from '../validacao/cpfExistValidator';
 
 export class CriaColaboradorAdministrativoDTO {
   @IsString({ message: 'O nome deve ser do tipo string' })
@@ -20,6 +21,7 @@ export class CriaColaboradorAdministrativoDTO {
   @IsNotEmpty({ message: 'O cpf não pode ser vazio' })
   @Length(11, 11, { message: 'O cpf deve ter exatamente 11 caracteres' })
   @CpfValidator({ message: 'O cpf não é válido' })
+  @CpfExistValidator({ message: 'O cpf já está cadastrado!' })
   cpf: string;
 
   @IsString({ message: 'O celular deve ser do tipo string' })

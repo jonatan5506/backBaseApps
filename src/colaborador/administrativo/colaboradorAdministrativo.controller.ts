@@ -7,7 +7,6 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ColaboradorAdministrativoRepository } from './colaboradorAdministrativo.repository';
 import { CriaColaboradorAdministrativoDTO } from './dto/criaColaboradorAdministrativo';
 import { ColaboradorAdministrativoEntity } from './colaboradorAdministrativo.entity';
 import { ListaColaboradorAdministrativoDTO } from './dto/listaColaboradorAdministrativo.dto';
@@ -18,10 +17,7 @@ import { v4 as uuid } from 'uuid';
 
 @Controller('/colaborador/administrativo')
 export class ColaboradorAdministrativoController {
-  constructor(
-    private colaborador: ColaboradorAdministrativoRepository,
-    private colaboradorService: ColaboradorAdministrativoService,
-  ) {}
+  constructor(private colaboradorService: ColaboradorAdministrativoService) {}
 
   @Post()
   async criaColaborador(
@@ -60,15 +56,16 @@ export class ColaboradorAdministrativoController {
     @Param('id') id: string,
     @Body() novosDados: AtualizaColaboradorAdministrativoDTO,
   ) {
-    await this.colaborador.atualizaColaborador(id, novosDados);
+    await this.colaboradorService.atualizaColaborador(id, novosDados);
     return {
       mensagem: 'Colaborador atualizado com sucesso!',
     };
   }
 
   @Delete('/:id')
-  async deletaUsuario(@Param('id') id: string) {
-    const colaboradorDeletado = await this.colaborador.deletaColaborador(id);
+  async deletaColaborador(@Param('id') id: string) {
+    const colaboradorDeletado =
+      await this.colaboradorService.deletaColaborador(id);
     return {
       colaborador: colaboradorDeletado,
       mensagem: 'Colaborador deletado com sucesso!',

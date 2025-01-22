@@ -6,6 +6,7 @@ import { ValidadorDeEmail } from './validacao/emailValidator';
 import { ValidadorDeCpf } from './validacao/cpfValidator';
 import { ColaboradorAdministrativoEntity } from './colaboradorAdministrativo.entity';
 import { ColaboradorAdministrativoService } from './colaboradorAdministrativoService';
+import { BuscadorDeCpf } from './validacao/cpfExistValidator';
 
 @Module({
   // Habilita o service
@@ -16,6 +17,7 @@ import { ColaboradorAdministrativoService } from './colaboradorAdministrativoSer
     ColaboradorAdministrativoRepository,
     ValidadorDeEmail,
     ValidadorDeCpf,
+    BuscadorDeCpf,
   ],
 })
 export class ColaboradorAdministrativoModule {}
