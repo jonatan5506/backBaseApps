@@ -22,3 +22,5 @@ Inicia projeto Nest - npx @nestjs/cli new loja
 OBS: Dá pra criar um usuário inteiro com o comando: 
   nest g res 'module-name' ou yarn nest g res users
   Criei users como teste
+
+## TODO CRUD colaboradorMedico
